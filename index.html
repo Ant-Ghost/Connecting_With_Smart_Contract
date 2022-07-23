@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>My 2nd Blockchain program</title>
+		<script type="module">
+			import { ethers } from './ethers-5.2.esm.min.js';
+			// const { ethers } = require('ethers');
+
+			async function connect() {
+				if (typeof window.ethereum !== 'undefined') {
+					console.log('We are in!!');
+					await ethereum.request({ method: 'eth_requestAccounts' });
+				}
+			}
+
+			/**
+			 * To execute a contract we need the following:
+			 * 	- address of the contract ->
+			 * 	- contract ABI
+			 * 	- contract fuction
+			 * 	- node connection -> MetaMask
+			 */
+			async function execute() {
+				const contractAddress = '0x5FbDB2315678afecb367f032d93F642f64180aa3';
+				const abi = [
+					{
+						inputs: [
+							{
+								internalType: 'string',
+								name: '_name',
+								type: 'string',
+							},
+							{
+								internalType: 'uint256',
+								name: '_favoriteNumber',
+								type: 'uint256',
+							},
+						],
+						name: 'addPerson',
+						outputs: [],
+						stateMutability: 'nonpayable',
+						type: 'function',
+					},
+					{
+						inputs: [
+							{
+								internalType: 'string',
+								name: '',
+								type: 'string',
+							},
+						],
+						name: 'nameToFavoriteNumber',
+						outputs: [
+							{
+								internalType: 'uint256',
+								name: '',
+								type: 'uint256',
+							},
+						],
+						stateMutability: 'view',
+						type: 'function',
+					},
+					{
+						inputs: [
+							{
+								internalType: 'uint256',
+								name: '',
+								type: 'uint256',
+							},
+						],
+						name: 'people',
+						outputs: [
+							{
+								internalType: 'uint256',
+								name: 'favoriteNumber',
+								type: 'uint256',
+							},
+							{
+								internalType: 'string',
+								name: 'name',
+								type: 'string',
+							},
+						],
+						stateMutability: 'view',
+						type: 'function',
+					},
+					{
+						inputs: [],
+						name: 'retrieve',
+						outputs: [
+							{
+								internalType: 'uint256',
+								name: '',
+								type: 'uint256',
+							},
+						],
+						stateMutability: 'view',
+						type: 'function',
+					},
+					{
+						inputs: [
+							{
+								internalType: 'uint256',
+								name: '_favoriteNumber',
+								type: 'uint256',
+							},
+						],
+						name: 'store',
+						outputs: [],
+						stateMutability: 'nonpayable',
+						type: 'function',
+					},
+				];
+
+				const provider = new ethers.providers.Web3Provider(window.ethereum);
+				const signer = provider.getSigner(); // this is going to get the connected account
+
+				console.log('Signer:', signer);
+				console.log('provider:', provider);
+				const contract = new ethers.Contract(contractAddress, abi, signer);
+
+				await contract.store(42);
+			}
+			await connect();
+			await execute();
+		</script>
+	</head>
+	<body>
+		<!-- <button onclick="connect()">Connect to MetaMask wallet</button> -->
+		<!-- <button onclick="execute()">Execute a dummy smart contract</button> -->
+	</body>
+</html>

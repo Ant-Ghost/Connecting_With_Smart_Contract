@@ -1,0 +1,20 @@
+{
+	"name": "connect_to_local_network_execute_tnx",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"yarn": "node node_modules\\yarn\\bin\\yarn.js",
+		"postinstall": "npm run yarn add ethers, http-server && git clone https://github.com/PatrickAlphaC/hardhat-simple-storage.git && cd hardhat-simple-storage && node ../node_modules/yarn/bin/yarn.js && cd ..",
+		"start-vm": "cd hardhat-simple-storage && node ../node_modules/yarn/bin/yarn.js hardhat node",
+		"http-server": "npm run yarn http-server"
+	},
+	"author": "Aunomitra Ghosh",
+	"license": "ISC",
+	"dependencies": {
+		"ethers": "^5.6.9",
+		"http-server": "^14.1.1",
+		"yarn": "^1.22.19"
+	}
+}
