@@ -6,9 +6,9 @@
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"yarn": "node node_modules\\yarn\\bin\\yarn.js",
-		"postinstall": "npm run yarn add ethers, http-server",
-		"hardhat": "git clone https://github.com/PatrickAlphaC/hardhat-simple-storage.git && cd hardhat-simple-storage && node ../node_modules/yarn/bin/yarn.js && cd ..",
-		"start-vm": "cd hardhat-simple-storage && node ../node_modules/yarn/bin/yarn.js hardhat node",
+		"get-libs": "npm run yarn add ethers http-server",
+		"get-hardhat": "git clone https://github.com/PatrickAlphaC/hardhat-simple-storage.git && cd hardhat-simple-storage && node ../node_modules/yarn/bin/yarn.js && cd ..",
+		"start-vm": "cd hardhat-simple-storage && node ../node_modules/yarn/bin/yarn.js hardhat node && cd ..",
 		"http-server": "npm run yarn http-server"
 	},
 	"author": "Aunomitra Ghosh",
